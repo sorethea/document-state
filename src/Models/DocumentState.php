@@ -8,7 +8,13 @@ use Illuminate\Database\Query\Builder;
 
 class DocumentState extends Model
 {
-    protected $table = "document_states";
+    public function __construct(array $attributes = [])
+    {
+        if(!isset($this->table)){
+            $this->setTable(config('document-state.table_name'));
+        }
+        parent::__construct($attributes);
+    }
 
     protected $casts = [
         "properties"=>"collection",
@@ -39,4 +45,5 @@ class DocumentState extends Model
             ->where("document_id",$document->getKey())
             ->where("active","=",true);
     }
+
 }
