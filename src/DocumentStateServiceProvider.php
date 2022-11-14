@@ -13,7 +13,7 @@ class DocumentStateServiceProvider extends PackageServiceProvider
         $package->name("document-state")
             ->name("document-state")
             ->hasConfigFile('document-state')
-            ->hasMigrations(['create_document_state_table']);
+            ->hasMigration('create_document_state_table');
     }
 
 }
