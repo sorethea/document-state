@@ -1,0 +1,19 @@
+{
+    "name": "sorethea/document-state",
+    "description": "The simple record document state management for your laravel application.",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Sorethea\\DocumentState\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sorethea OK",
+            "email": "sorethea@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
