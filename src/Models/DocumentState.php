@@ -39,7 +39,7 @@ class DocumentState extends Model
             ->where("document_id",$document->getKey());
     }
 
-    public function scopeActiveStateDocument(Builder $query, Model $document):Builder{
+    public function scopeActiveDocument(Builder $query, Model $document):Builder{
         return $query
             ->where("document_type", $document->getMorphClass())
             ->where("document_id",$document->getKey())
