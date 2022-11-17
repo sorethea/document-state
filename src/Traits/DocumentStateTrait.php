@@ -5,6 +5,7 @@ namespace Sorethea\DocumentState\Traits;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Support\Str;
 use Sorethea\DocumentState\Models\DocumentState;
 
 trait DocumentStateTrait
@@ -32,11 +33,16 @@ trait DocumentStateTrait
         );
     }
 
-    protected function setState(Model $model,int $state):void {
-        $model->states()->update(["active"=>false])->save();
-        $model->states([
+    protected function setState(int $state):void {
+        $this->states()->each()->update(["active"=>false]);
+        $this->states()->save([
+            "uuid"=>Str::random(),
             "state"=>$state,"causer_id"=>auth()->id(),
             "causer_type"=>get_class(auth()->user()),
-            "active"=>true])->save();
+            "active"=>true]);
+    }
+
+    protected function create(){
+        $this->setState(0);
     }
 }
