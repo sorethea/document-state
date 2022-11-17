@@ -43,6 +43,7 @@ trait DocumentStateTrait
     }
 
     protected function create(){
+        dd($this);
         $this->setState(0);
     }
 }
