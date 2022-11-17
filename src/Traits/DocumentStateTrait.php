@@ -44,6 +44,7 @@ trait DocumentStateTrait
             $model->update(["active"=>false]);
         });
         $user = auth()->user();
+        dd($user);
         $documentState = new DocumentState([
             "uuid"=>Str::random(),
             "state"=>$state,"causer_id"=>auth()->id(),
