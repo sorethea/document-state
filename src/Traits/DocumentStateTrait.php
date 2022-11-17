@@ -21,4 +21,13 @@ trait DocumentStateTrait
             }
         );
     }
+    protected function status():Attribute{
+        return new Attribute(
+            function ():string{
+                $documentState = $this->states()->where("active",true)->first();
+                if(isset($documentState)) return config("document-state.status")[$documentState->state];
+                else return config("document-state.status")[null];
+            }
+        );
+    }
 }
