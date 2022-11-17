@@ -42,7 +42,7 @@ trait DocumentStateTrait
             "active"=>true]);
     }
 
-    protected function create(){
+    protected function created(){
         dd($this);
         $this->setState(0);
     }
