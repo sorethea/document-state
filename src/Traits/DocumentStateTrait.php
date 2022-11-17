@@ -21,12 +21,11 @@ trait DocumentStateTrait
             }
         );
     }
-    protected function status():Attribute{
+    protected function state():Attribute{
         return new Attribute(
-            function ():string{
+            function ():int{
                 $documentState = $this->states()->where("active",true)->first();
-                if(isset($documentState)) return config("document-state.status")[$documentState->state];
-                else return "Not Available";
+                if(isset($documentState)) return$documentState->state;
             }
         );
     }
