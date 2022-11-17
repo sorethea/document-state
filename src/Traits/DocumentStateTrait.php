@@ -14,7 +14,11 @@ trait DocumentStateTrait
 
     protected function isActive():\Attribute{
         return new \Attribute(
-            fn()=>true
+            function (){
+                $documentState = $this->states()->where("active",true)->first();
+                if($documentState->state<2) return true;
+                else return false;
+            }
         );
     }
 }
