@@ -43,11 +43,12 @@ trait DocumentStateTrait
         if(isset($this->states)) $this->states()->each(function (Model $model){
             $model->update(["active"=>false]);
         });
+        $user = auth()->user();
         $documentState = new DocumentState([
             "uuid"=>Str::random(),
             "state"=>$state,"causer_id"=>auth()->id(),
-            "causer_type"=>get_class(auth()->user()),
             "active"=>true]);
+        $documentState->causer()->save($user);
         $this->states()->save($documentState);
     }
 
