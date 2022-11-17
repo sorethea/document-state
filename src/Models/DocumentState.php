@@ -15,6 +15,11 @@ class DocumentState extends Model
         }
         parent::__construct($attributes);
     }
+    protected $fillable = [
+        "uuid",
+        "active",
+        "state",
+        ];
 
     protected $casts = [
         "properties"=>"collection",
