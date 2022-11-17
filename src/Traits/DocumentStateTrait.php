@@ -13,13 +13,13 @@ trait DocumentStateTrait
         return $this->morphMany(DocumentState::class,"document");
     }
 
-    protected function isActive():Attribute{
-        return new Attribute(
-            function (){
-                $documentState = $this->states()->where("active",true)->first();
-                if($documentState->state<2) return true;
-                else return false;
-            }
-        );
-    }
+//    protected function isActive():Attribute{
+//        return new Attribute(
+//            function (){
+//                $documentState = $this->states()->where("active",true)->first();
+//                if($documentState->state<2) return true;
+//                else return false;
+//            }
+//        );
+//    }
 }
