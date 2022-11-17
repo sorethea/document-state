@@ -23,9 +23,10 @@ trait DocumentStateTrait
     }
     protected function state():Attribute{
         return new Attribute(
-            function ():int{
+            function (): ?int{
                 $documentState = $this->states()->where("active",true)->first();
                 if(isset($documentState)) return$documentState->state;
+                return null;
             }
         );
     }
