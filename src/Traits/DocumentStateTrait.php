@@ -43,7 +43,7 @@ trait DocumentStateTrait
         );
     }
 
-    protected function setState(int $state):void {
+    public function setState(int $state):void {
         if(isset($this->states)) $this->states()->each(function (Model $model){
             $model->update(["active"=>false]);
         });
