@@ -19,6 +19,8 @@ class DocumentState extends Model
         "uuid",
         "active",
         "state",
+        "causer_id",
+        "causer_type",
         ];
 
     protected $casts = [

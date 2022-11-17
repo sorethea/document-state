@@ -48,12 +48,12 @@ trait DocumentStateTrait
             $model->update(["active"=>false]);
         });
         $user = auth()->user();
-        dd($user);
         $documentState = new DocumentState([
             "uuid"=>Str::random(),
-            "state"=>$state,"causer_id"=>auth()->id(),
+            "state"=>$state,
+            "causer_id"=>$user->id,
+            "causer_type"=>get_class($user),
             "active"=>true]);
-        $documentState->causer()->save($user);
         $this->states()->save($documentState);
     }
 
