@@ -16,7 +16,7 @@ trait DocumentStateTrait
         return new Attribute(
             function (){
                 $documentState = $this->states()->where("active",true)->first();
-                if($documentState->state<2) return true;
+                if(isset($documentState) && $documentState->state<2) return true;
                 else return false;
             }
         );
