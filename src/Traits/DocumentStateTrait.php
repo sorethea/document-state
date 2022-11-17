@@ -10,6 +10,12 @@ use Sorethea\DocumentState\Models\DocumentState;
 
 trait DocumentStateTrait
 {
+    public static function boot(){
+        parent::boot();
+        self::created(function ($model){
+            $model->setState(0);
+        });
+    }
     public function states(): MorphMany{
         return $this->morphMany(DocumentState::class,"document");
     }
@@ -42,8 +48,4 @@ trait DocumentStateTrait
             "active"=>true]);
     }
 
-    protected function created(){
-        dd($this);
-        $this->setState(0);
-    }
 }
