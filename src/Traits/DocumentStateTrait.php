@@ -40,7 +40,9 @@ trait DocumentStateTrait
     }
 
     protected function setState(int $state):void {
-        if(isset($this->states)) $this->states()->each()->update(["active"=>false]);
+        if(isset($this->states)) $this->states()->each(function ($model){
+            $model->update(["active"=>false]);
+        });
         $this->states()->save([
             "uuid"=>Str::random(),
             "state"=>$state,"causer_id"=>auth()->id(),
