@@ -3,6 +3,7 @@
 namespace Sorethea\DocumentState\Traits;
 
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Sorethea\DocumentState\Models\DocumentState;
 
@@ -29,5 +30,13 @@ trait DocumentStateTrait
                 return null;
             }
         );
+    }
+
+    protected function setState(Model $model,int $state):void {
+        $model->states()->update(["active"=>false])->save();
+        $model->states([
+            "state"=>$state,"causer_id"=>auth()->id(),
+            "causer_type"=>get_class(auth()->user()),
+            "active"=>true])->save();
     }
 }
