@@ -15,6 +15,10 @@ trait DocumentStateTrait
         self::created(function ($model){
             $model->setState(0);
         });
+
+        self::deleted(function ($model){
+            $model->states()->delete();
+        });
     }
     public function states(): MorphMany{
         return $this->morphMany(DocumentState::class,"document");
