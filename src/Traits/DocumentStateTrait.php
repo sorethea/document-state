@@ -8,11 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Str;
 use Sorethea\DocumentState\Models\DocumentState;
+use Sorethea\DocumentState\Models\Scopes\ActiveScope;
 
 trait DocumentStateTrait
 {
     public static function boot(){
         parent::boot();
+
+        self::addGlobalScope(ActiveScope::class);
+
         self::created(function ($model){
             $model->setState(0);
         });
