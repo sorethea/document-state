@@ -53,7 +53,7 @@ class DocumentState extends Model
             ->where("active","=",true);
     }
 
-    public function scopeActive(Builder $query){
-        return $query->where("state","!=",2);
-    }
+//    public function scopeActive(Builder $query){
+//        return $query->where("state","!=",2);
+//    }
 }
