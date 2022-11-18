@@ -2,10 +2,10 @@
 
 namespace Sorethea\DocumentState\Traits;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Str;
 use Sorethea\DocumentState\Models\DocumentState;
 
@@ -23,6 +23,9 @@ trait DocumentStateTrait
     }
     public function states(): MorphMany{
         return $this->morphMany(DocumentState::class,"document");
+    }
+    public function scopeActive(Builder $query){
+        return $query->whereHas("states",fn($query)=>$query->active());
     }
     protected function isActive():Attribute{
         return new Attribute(

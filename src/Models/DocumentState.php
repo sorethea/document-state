@@ -28,7 +28,7 @@ class DocumentState extends Model
     ];
 
     public function scopeActive(Builder $query){
-        $query->where("state","!=",2);
+       return $query->where("state","!=",2);
     }
 
     public function document(): MorphTo{
