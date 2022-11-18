@@ -32,6 +32,19 @@ trait DocumentStateTrait
     public function scopeActive(Builder $query){
         return $query->whereHas("states",fn($query)=>$query->active());
     }
+
+    public function scopeCancelled(Builder $query){
+        return $query->whereHas("states",fn($query)=>$query->where("active",true)->where("state",2));
+    }
+
+    public function scopeSubmitted(Builder $query){
+        return $query->whereHas("states",fn($query)=>$query->where("active",true)->where("state",1));
+    }
+
+    public function scopeSaved(Builder $query){
+        return $query->whereHas("states",fn($query)=>$query->where("active",true)->where("state",0));
+    }
+
     protected function isActive():Attribute{
         return new Attribute(
             function (){
