@@ -27,10 +27,6 @@ class DocumentState extends Model
         "properties"=>"collection",
     ];
 
-    public function scopeActive(Builder $query){
-       return $query->where("state","!=",2);
-    }
-
     public function document(): MorphTo{
         return $this->morphTo();
     }
@@ -57,4 +53,7 @@ class DocumentState extends Model
             ->where("active","=",true);
     }
 
+    public function scopeActive(Builder $query){
+        return $query->where("state","!=",2);
+    }
 }
