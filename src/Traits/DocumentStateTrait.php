@@ -29,7 +29,7 @@ trait DocumentStateTrait
     protected function isActive():Attribute{
         return new Attribute(
             function (){
-                $documentState = $this->states()->where("active",true)->first();
+                $documentState = $this->states()->where("document_states.active",true)->first();
                 if(isset($documentState) && $documentState->state<2) return true;
                 else return false;
             }
