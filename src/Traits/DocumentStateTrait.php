@@ -15,7 +15,7 @@ trait DocumentStateTrait
     public static function boot(){
         parent::boot();
 
-        self::addGlobalScope(ActiveScope::class);
+        static::addGlobalScope(new ActiveScope);
 
         self::created(function ($model){
             $model->setState(0);
