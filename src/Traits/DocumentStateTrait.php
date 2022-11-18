@@ -23,7 +23,9 @@ trait DocumentStateTrait
     public function states(): MorphMany{
         return $this->morphMany(DocumentState::class,"document");
     }
-
+    public function scopeActive($query){
+        $query->where("state","!=",2);
+    }
     protected function isActive():Attribute{
         return new Attribute(
             function (){
