@@ -24,9 +24,6 @@ trait DocumentStateTrait
     public function states(): MorphMany{
         return $this->morphMany(DocumentState::class,"document");
     }
-    public function scopeActive(Builder $query){
-        return $query->active();
-    }
     protected function isActive():Attribute{
         return new Attribute(
             function (){
